@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cardz Incoporated</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      
+      color: #1a1a2e;
+    }
+
+    header {
+      background: linear-gradient(0deg, #8ebff3, #000000 30%);;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      
+      height: 150px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    header h1 {
+      font-size: 3rem;
+      letter-spacing: 1px;
+      text-align: center;
+      font-family: "Oswald", sans-serif;
+    }
+    header a{
+        padding: 2rem;
+    }
+
+    .hamburger {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 6px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+
+    .hamburger:hover span { background: #a8c4e8; }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: #001f5b;
+      border-radius: 6px;
+      min-width: 160px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      overflow: hidden;
+      z-index: 100;
+    }
+
+    .dropdown-menu.open { display: block; }
+
+    .dropdown-menu a {
+      display: block;
+      color: #ddeeff;
+      text-decoration: none;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: background 0.15s;
+    }
+
+    .dropdown-menu a:hover { background: #003399; color: white; }
+
+    .hero {
+      text-align: center;
+      padding: 5rem;
+      background: linear-gradient(0deg, #5889bd, #8ebff3 80%);
+      
+    }
+
+    .hero h2 {
+      font-size: 2rem;
+      color: #800606;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: rgb(233, 233, 233);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .features {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 3rem 2rem;
+      flex-wrap: wrap;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 2rem;
+      width: 260px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,31,91,0.1);
+    }
+
+    .listings {
+      margin: 0 auto 4rem;
+      padding:  5rem 2rem;
+      text-align: center;
+      color: #ffffff;
+    }
+
+    .listings h1 {
+        color: #800606;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    .listings p {
+        color: #c0dcfa;
+        font-size: 1rem;
+
+    }
+    .listing-card {
+        background: #001f5b;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.15s;
+    }
+
+    .listing-card:hover { transform: translateY(-4px); }
+
+    .listing-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        background: #eee;
+    }
+
+    .listing-card .card-body {
+        padding: 0.5rem 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        flex: 1;
+    }
+
+    .listing-card .card-title {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #ffffff;
+        line-height: 1.3;
+    }
+
+    .listing-card .card-price {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #ffffff;
+    }
+
+    .listing-card .card-condition {
+        font-size: 0.78rem;
+        color: #ffffff;
+    }
+
+    .listing-card .card-btn {
+        display: block;
+        margin: 0.5rem 3rem 1rem;
+        background: #800606;
+        color: white;
+        text-align: center;
+        padding: 0.5rem;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 600;
+        transition: background 0.15s;
+    }
+
+    .listing-card .card-btn:hover { background: #003399; }
+
+    .listing-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1.2rem;
+        margin-top: 1.5rem;
+        text-align: left;
+    }
+
+    .topcards {
+        margin: 0 auto 4rem;
+        padding:  5rem 2rem;
+        text-align: center;
+        color: #ffffff;
+    }
+    .topcards-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.2rem;
+        margin-top: 1.5rem;
+        border: none;
+    }
+    .topcards h1{
+        color: #800606;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    .topcards .card-body {
+        padding: 0.5rem 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        flex: 1;
+    }
+    .topcards .card-img {
+        width: 100%;
+        height: 200px;
+        background: #001f5b;
+    }
+
+    .grid {
+        display: grid;
+        border: none;
+        grid-template-columns: 1fr 1fr;
+        
+    }
+
+
+
+    footer {
+      background-color: #001f5b;
+      color: #a8c4e8;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<header>
+    <div class="logo">
+        <a href="https://www.tiktok.com/@cardzincorporated">
+            <img src="imgs\052c9173344a6331860f490770de7f12~tplv-tiktokx-cropcenter_1080_1080.jpeg" alt="Logo" height="75">
+        </a>
+        <h1>Cardz Incorporated</h1>
+    </div>
+
+    
+    <div class="dropdown">
+      <button class="hamburger" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="dropdown-menu">
+        <a href="#">Top Cards All Time</a>
+        <a href="#">Collection</a>
+        <a href="#">About</a>
+      </div>
+    </div>
+  </header>
+<body>
+
+  <div class="hero">
+    <h2>Trade Cards. Give Me Cards. You Give ME.</h2>
+    <p>From rookies to hall-of-famers.</p>
+
+  <div class="grid">
+    <div class="listings">
+        <h1>Ebay Listings</h1>
+        <div class="listing-grid">
+
+            <!-- Listing 1 — replace img src, title, price, condition, and href with your real eBay data -->
+            <div class="listing-card">
+                <img src="https://i.ebayimg.com/thumbs/images/g/sYMAAeSweM9p4C04/s-l500.jpg" alt="Card listing" onerror="this.style.background='#ccd';this.removeAttribute('src')">
+                <div class="card-body">
+                    <span class="card-title">Listing Title Here</span>
+                    <span class="card-price">$252.41</span>
+                    <span class="card-condition">Condition</span>
+                </div>
+                <a class="card-btn" href="https://www.ebay.ca/itm/358451039768" target="_blank">View on eBay</a>
+            </div>
+
+            <!-- Duplicate and fill in for each additional listing -->
+            <div class="listing-card">
+                <img src="https://i.ebayimg.com/images/g/WZ4AAeSwdbZpoloR/s-l300.webp" alt="Card listing" onerror="this.style.background='#ccd';this.removeAttribute('src')">
+                <div class="card-body">
+                    <span class="card-title">Listing Title Here</span>
+                    <span class="card-price">$68.22</span>
+                    <span class="card-condition">Condition</span>
+                </div>
+                <a class="card-btn" href="https://www.ebay.ca/itm/358267626090?epid=23084052321&itmmeta=01KPRWCVYC90S78GA2BCD9MW9F&hash=item536a6a226a:g:WZ4AAeSwdbZpoloR" target="_blank">View on eBay</a>
+            </div>
+
+            <div class="listing-card">
+                <img src="https://i.ebayimg.com/images/g/3d0AAeSwhPFp4CxN/s-l300.webp" alt="Card listing" onerror="this.style.background='#ccd';this.removeAttribute('src')">
+                <div class="card-body">
+                    <span class="card-title">Listing Title Here</span>
+                    <span class="card-price">$136.43</span>
+                    <span class="card-condition">Condition</span>
+                </div>
+                <a class="card-btn" href="https://www.ebay.ca/itm/358451029673?epid=21081425697&itmmeta=01KPRWCVYCY0THYMY7BTXNNEJ6&hash=item537558a6a9:g:3d0AAeSwhPFp4CxN" target="_blank">View on eBay</a>
+            </div>
+
+            <div class="listing-card">
+                <img src="https://i.ebayimg.com/images/g/0mEAAeSwBGxpyySX/s-l300.webp" alt="Card listing" onerror="this.style.background='#ccd';this.removeAttribute('src')">
+                <div class="card-body">
+                    <span class="card-title">Listing Title Here</span>
+                    <span class="card-price">$68.22</span>
+                    <span class="card-condition">Condition</span>
+                </div>
+                <a class="card-btn" href="https://www.ebay.ca/itm/358392608039?epid=11075861027&itmmeta=01KPRWCVYC4SSYPKX55X07QE63&hash=item5371dd3527:g:0mEAAeSwBGxpyySX" target="_blank">View on eBay</a>
+            </div>
+
+            <div class="listing-card">
+                <img src="https://i.ebayimg.com/images/g/6ocAAeSwLqFpwdGW/s-l300.webp" alt="Card listing" onerror="this.style.background='#ccd';this.removeAttribute('src')">
+                <div class="card-body">
+                    <span class="card-title">Listing Title Here</span>
+                    <span class="card-price">$143.26</span>
+                    <span class="card-condition">Condition</span>
+                </div>
+                <a class="card-btn" href="https://www.ebay.ca/itm/358367299160?epid=2327557246&itmmeta=01KPRWCVYCTQW70YBCQXY8NDD2&hash=item53705b0658:g:6ocAAeSwLqFpwdGW" target="_blank">View on eBay</a>
+            </div>
+
+            <div class="listing-card">
+                <img src="https://i.ebayimg.com/images/g/7N4AAeSwT3xpwdAg/s-l300.webp" alt="Card listing" onerror="this.style.background='#ccd';this.removeAttribute('src')">
+                <div class="card-body">
+                    <span class="card-title">Listing Title Here</span>
+                    <span class="card-price">$682.20</span>
+                    <span class="card-condition">Condition</span>
+                </div>
+                <a class="card-btn" href="https://www.ebay.ca/itm/358267650087?epid=11058514376&itmmeta=01KPRWCVYC5V9X8W5P1YEQBA0Q&hash=item536a6a8027:g:7N4AAeSwT3xpwdAg" target="_blank">View on eBay</a>
+            </div>
+
+        </div>
+    </div>
+    <div class="topcards">
+        <h1>Top Cards</h1>
+        <div class="topcards-grid">
+
+            <img src="https://i.ebayimg.com/images/g/7N4AAeSwT3xpwdAg/s-l300.webp">
+
+            
+
+            <img src="https://i.ebayimg.com/images/g/6ocAAeSwLqFpwdGW/s-l300.webp">
+
+            
+
+            <img src="https://i.ebayimg.com/images/g/0mEAAeSwBGxpyySX/s-l300.webp">
+            
+
+            <img src="https://i.ebayimg.com/images/g/sYMAAeSweM9p4C04/s-l300.webp">
+        
+        </div>
+
+    </div>
+</div>
+</div>
+ 
+ 
+
+  <script>
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.dropdown')) {
+        document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
+      }
+    });
+  </script>
+
+
+</body>
+<footer>
+    &copy; 2026 CardzInc. All rights reserved.
+</footer>
+</html>
