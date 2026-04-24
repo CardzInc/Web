@@ -3,25 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href='https://fonts.googleapis.com/css?family=Allerta Stencil' rel='stylesheet'>
+
   <title>Cardz Incoporated</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      
+      font-family: 'Allerta Stencil', sans-serif;
       color: #1a1a2e;
     }
 
     header {
-      background: linear-gradient(0deg, #8ebff3, #000000 30%);;
+      background: #000000;
       color: white;
       padding: 1rem;
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      
-      height: 150px;
+      height: 50px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
     .logo {
@@ -31,12 +31,14 @@
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
+        color: white;
+        font-size: 1.5rem;
     }
     header h1 {
       font-size: 3rem;
       letter-spacing: 1px;
       text-align: center;
-      font-family: "Oswald", sans-serif;
+      font-family: Helvetica, sans-serif;
     }
     header a{
         padding: 2rem;
@@ -97,13 +99,14 @@
     .hero {
       text-align: center;
       padding: 5rem;
-      background: linear-gradient(0deg, #5889bd, #8ebff3 80%);
+      background: linear-gradient(0deg, #8ebff3, #000000 10%);
       
     }
 
     .hero h2 {
       font-size: 2rem;
       color: #800606;
+      font-family: Helvetica, sans-serif;
     }
 
     .hero p {
@@ -112,16 +115,15 @@
       max-width: 560px;
       margin: 0 auto;
       line-height: 1.6;
+      font-family: Helvetica, sans-serif;
     }
 
-    .features {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      padding: 3rem 2rem;
-      flex-wrap: wrap;
-      max-width: 1100px;
-      margin: 0 auto;
+    .cardz {
+        text-align: center;
+        padding: 5rem;
+        background: linear-gradient(0deg, #2e5f94, #8ebff3 80%);
+        
+
     }
 
     .card {
@@ -138,16 +140,19 @@
       padding:  5rem 2rem;
       text-align: center;
       color: #ffffff;
+
     }
 
     .listings h1 {
         color: #800606;
         font-size: 2rem;
         margin-bottom: 1rem;
+        font-family: 'Allerta Stencil', sans-serif;
     }
     .listings p {
         color: #c0dcfa;
         font-size: 1rem;
+        font-family: 'Allerta Stencil', sans-serif;
 
     }
     .listing-card {
@@ -182,17 +187,20 @@
         font-weight: 600;
         color: #ffffff;
         line-height: 1.3;
+        font-family: Helvetica, sans-serif;
     }
 
     .listing-card .card-price {
         font-size: 1.05rem;
         font-weight: 700;
+        font-family: Helvetica, sans-serif;
         color: #ffffff;
     }
 
     .listing-card .card-condition {
         font-size: 0.78rem;
         color: #ffffff;
+        font-family: Helvetica, sans-serif;
     }
 
     .listing-card .card-btn {
@@ -206,6 +214,7 @@
         text-decoration: none;
         font-size: 0.85rem;
         font-weight: 600;
+        font-family: Helvetica, sans-serif;
         transition: background 0.15s;
     }
 
@@ -218,7 +227,6 @@
         margin-top: 1.5rem;
         text-align: left;
     }
-
     .topcards {
         margin: 0 auto 4rem;
         padding:  5rem 2rem;
@@ -236,15 +244,35 @@
         color: #800606;
         font-size: 2rem;
         margin-bottom: 1rem;
+        font-family: Helvetica, sans-serif;
     }
-    .topcards .card-body {
+    .topcards-display {
+        background: #001f5b;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.15s;
+    }
+    .topcards-display:hover { transform: translateY(-4px); }
+
+    .topcards .card-title {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #ffffff;
+        line-height: 1.3;
+        font-family: Helvetica, sans-serif;
+    }
+
+    .topcards-display .card-body {
         padding: 0.5rem 1rem;
         display: flex;
         flex-direction: column;
         gap: 0.3rem;
         flex: 1;
     }
-    .topcards .card-img {
+    .topcards-display .card-img {
         width: 100%;
         height: 200px;
         background: #001f5b;
@@ -254,7 +282,6 @@
         display: grid;
         border: none;
         grid-template-columns: 1fr 1fr;
-        
     }
 
 
@@ -269,14 +296,6 @@
   </style>
 </head>
 <header>
-    <div class="logo">
-        <a href="https://www.tiktok.com/@cardzincorporated">
-            <img src="imgs\052c9173344a6331860f490770de7f12~tplv-tiktokx-cropcenter_1080_1080.jpeg" alt="Logo" height="75">
-        </a>
-        <h1>Cardz Incorporated</h1>
-    </div>
-
-    
     <div class="dropdown">
       <button class="hamburger" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -287,13 +306,20 @@
         <a href="#">About</a>
       </div>
     </div>
+    
   </header>
 <body>
-
+    <div class="logo">
+        <a href="https://www.tiktok.com/@cardzincorporated">
+            <img src="imgs\052c9173344a6331860f490770de7f12~tplv-tiktokx-cropcenter_1080_1080.jpeg" alt="Logo" height="75">
+        </a>
+        <h1>Cardz Incorporated</h1>
+    </div>
   <div class="hero">
     <h2>Trade Cards. Give Me Cards. You Give ME.</h2>
     <p>From rookies to hall-of-famers.</p>
-
+    </div>
+<div class="cardz">
   <div class="grid">
     <div class="listings">
         <h1>Ebay Listings</h1>
@@ -366,24 +392,39 @@
     <div class="topcards">
         <h1>Top Cards</h1>
         <div class="topcards-grid">
+            <div class="topcards-display">
+                <div class="card-body">
 
-            <img src="https://i.ebayimg.com/images/g/7N4AAeSwT3xpwdAg/s-l300.webp">
+                    <img src="https://i.ebayimg.com/images/g/7N4AAeSwT3xpwdAg/s-l300.webp" height="200">
+                    <span class="card-title">Card Title Here</span>
+                </div>
+            </div>
 
-            
+            <div class="topcards-display">
+                <div class="card-body">
 
-            <img src="https://i.ebayimg.com/images/g/6ocAAeSwLqFpwdGW/s-l300.webp">
+            <img src="https://i.ebayimg.com/images/g/6ocAAeSwLqFpwdGW/s-l300.webp" height="200">
+            <span class="card-title">Card Title Here</span>
+                </div>
+            </div>
 
-            
+            <div class="topcards-display">
+                <div class="card-body">
+            <img src="https://i.ebayimg.com/images/g/0mEAAeSwBGxpyySX/s-l300.webp" height="200">
+                    <span class="card-title">Card Title Here</span>
+                </div>
+            </div>
 
-            <img src="https://i.ebayimg.com/images/g/0mEAAeSwBGxpyySX/s-l300.webp">
-            
+            <div class="topcards-display">
+                <div class="card-body">
+                    <img src="https://i.ebayimg.com/images/g/sYMAAeSweM9p4C04/s-l300.webp" height="200">
+                    <span class="card-title">Card Title Here</span>
+                </div>
+            </div>
 
-            <img src="https://i.ebayimg.com/images/g/sYMAAeSweM9p4C04/s-l300.webp">
-        
         </div>
-
+        </div>
     </div>
-</div>
 </div>
  
  
