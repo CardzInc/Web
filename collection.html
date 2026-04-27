@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href='https://fonts.googleapis.com/css?family=Allerta Stencil' rel='stylesheet'>
+
+  <title>Cardz Incoporated</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Allerta Stencil', sans-serif;
+      color: #1a1a2e;
+    }
+
+    header {
+      background: #000000;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      height: 50px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      position: relative;
+    }
+    .logo {
+        font-family: 'Allerta Stencil', sans-serif;
+        display: flex;
+        align-items: center;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -10%);
+        color: white;
+        font-size: 1.5rem;
+    }
+    header h1 {
+      font-size: 3rem;
+      letter-spacing: 1px;
+      text-align: center;
+      font-family: 'Allerta Stencil', sans-serif;
+    }
+    header a{
+        padding: 2rem;
+    }
+
+    .hamburger {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 6px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+
+    .hamburger:hover span { background: #a8c4e8; }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: #001f5b;
+      border-radius: 6px;
+      min-width: 160px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      overflow: hidden;
+      z-index: 100;
+    }
+
+    .dropdown-menu.open { display: block; }
+
+    .dropdown-menu a {
+      display: block;
+      color: #ddeeff;
+      text-decoration: none;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: background 0.15s;
+    }
+
+    .dropdown-menu a:hover { background: #003399; color: white; }
+
+    .hero {
+      text-align: center;
+      padding: 5rem;
+      background: linear-gradient(0deg, #8ebff3, #000000 10%);
+      
+    }
+
+    .hero h2 {
+      font-size: 2rem;
+      color: #800606;
+      font-family: Helvetica, sans-serif;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: rgb(233, 233, 233);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.6;
+      font-family: Helvetica, sans-serif;
+    }
+
+    .collection {
+        text-align: center;
+        padding: 5rem;
+        background: linear-gradient(0deg, #2e5f94, #8ebff3 80%);
+    }
+    
+    .collection .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        gap: 1.2rem;
+        margin-top: 1.5rem;
+        border: none;
+    }
+    .collection .card-display {
+        background: #001f5b;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.15s;
+        
+    }
+    .card-display .card-body {
+        padding: 0.5rem 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        flex: 1;
+    
+    }
+    .card-body .card-title {
+        font-size: 0.9rem;
+        color: #ffffff;
+        font-weight: 500;
+    }
+    .card-display:hover { 
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(153, 2, 2, 0.35);
+        color: #a83333;
+    }
+
+    .card-img img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+    }
+
+
+    footer {
+      background-color: #001f5b;
+      color: #a8c4e8;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.85rem;
+    }
+    @media screen and (max-width: 800px) {
+        .collection .grid {
+            grid-template-columns: 1fr;
+        }
+        .hero {
+            padding: 2.5rem 1rem;
+        }
+        .cardz {
+            padding: 2rem 1rem;
+        }
+        .card-img {
+            height: fit-content;
+        }
+        .listings, .topcards {
+            padding: 2rem 1rem;
+            margin-bottom: 0;
+        }
+        .logo h1 {
+            font-size: 1rem;
+        }
+        .logo img {
+            height: 50px;
+        }
+        header a {
+            padding: 0.5rem;
+        }
+    }
+
+  </style>
+</head>
+<header>
+    <div class="logo">
+        <a href="https://www.tiktok.com/@cardzincorporated">
+            <img src="imgs\052c9173344a6331860f490770de7f12~tplv-tiktokx-cropcenter_1080_1080.jpeg" alt="Logo" height="75">
+        </a>
+        <h1>Cardz Incorporated</h1>
+    </div>
+    <div class="dropdown">
+      <button class="hamburger" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="dropdown-menu">
+        <a href="https://cardzinc.com">Home</a>
+        <a href="https://cardzinc.com/collection.html">Collection</a>
+        <a href="#">About</a>
+      </div>
+    </div>
+</header>
+<body>
+
+
+    <div class="hero">
+        <h2>The Collection. MY Collection.</h2>
+        <p>I Have More Than You</p>
+
+    </div>
+    <div class="collection">
+        <div class="grid">
+            <div class="card-display">
+                <div class="card-body">
+                    <div class="card-img">
+                        <img src="imgs\Bo Jackson Arena Griffey Set Auto Jalen Brunson Unmasked.PNG">
+                        
+                    </div>
+                    <span class="card-title">Bo Jackson Arena <br> Griffey Set <br> Auto Jalen Brunson Unmasked</span>
+                </div>
+            </div>
+
+            <div class="card-display">
+                <div class="card-body">
+                    <div class="card-img">
+
+                        <img src="imgs\Firestorm Gold Prizm Ja'Marr Chase.PNG">
+                        
+
+                    </div>
+                    <span class="card-title">Firestorm Gold Prizm <br> Ja'Marr Chase</span>
+                </div>
+            </div>
+
+            <div class="card-display">
+                <div class="card-body">
+                    <div class="card-img">
+                        <img src="imgs\Midnight Sun Auto Carmelo Anthony.PNG">
+                        
+                    </div>
+                    <span class="card-title">Midnight Sun <br> Auto Carmelo Anthony</span>
+                </div>
+            </div>
+
+            <div class="card-display">
+
+                <div class="card-body">
+                    <div class="card-img">
+                        <img src="imgs\Obsidian Hotspot Molten Mojo Gianis Antetokumpo.PNG">
+                        
+                    </div>
+                    <span class="card-title">Obsidian Hotspot <br> Molten Mojo <br> Gianis Antetokumpo</span>
+                </div>
+            </div>
+
+            <div class="card-display">
+
+                <div class="card-body">
+                    <div class="card-img">
+                        <img src="imgs\Optic Uptown RC Marvin Harrison Jr.PNG">
+                    </div>
+                    <span class="card-title">Optic Uptown RC <br> Marvin Harrison Jr</span>
+                </div>
+            </div>
+
+            <div class="card-display">
+                <div class="card-body">
+                    <div class="card-img">
+                        <img src="imgs\Phoenix Color Blast Ashton Jeanty.PNG">
+                    </div>
+                    <span class="card-title">Phoenix Color Blast <br> Ashton Jeanty</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+<script>
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.dropdown')) {
+        document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
+      }
+    });
+  </script>
+
+  <footer>
+      &copy; 2026 CardzInc. All rights reserved. Created by Atticus Orsagh and Francesco Galante.
+  </footer>
+</body>
+
+</html>
