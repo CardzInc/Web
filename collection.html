@@ -170,6 +170,42 @@
     }
 
 
+
+
+    #card-search {
+      margin-top: 1.5rem;
+      padding: 0.6rem 1.2rem;
+      width: 100%;
+      max-width: 400px;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-family: 'Allerta Stencil', sans-serif;
+      background: rgba(255,255,255,0.15);
+      color: white;
+      outline: none;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.2);
+    }
+
+    #card-search::placeholder { color: rgba(255,255,255,0.6); }
+
+    #card-search:focus {
+      background: rgba(255,255,255,0.25);
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.6);
+    }
+
+    .no-results {
+      color: #ddeeff;
+      font-family: Helvetica, sans-serif;
+      font-size: 1.1rem;
+      margin-top: 2rem;
+      display: none;
+    }
+
+
+
+
     footer {
       background-color: #001f5b;
       color: #a8c4e8;
@@ -231,7 +267,7 @@
     <div class="hero">
         <h2>The Collection. MY Collection.</h2>
         <p>I Have More Than You</p>
-
+        <input type="text" id="card-search" placeholder="Search cards..." autocomplete="off">
     </div>
     <div class="collection">
         <div class="grid">
@@ -409,7 +445,18 @@
         document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
       }
     });
-  </script>
+
+    const searchInput = document.getElementById('card-search')
+    const cards = document.querySelectorAll('.card-display');
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase().trim();
+        cards.forEach(card => {
+            const imgSrc = card.querySelector('img').src.toLowerCase();
+            const title = card.querySelector('.card-title').textContent.toLowerCase();
+            card.style.display = (imgSrc.includes(query) || title.includes(query)) ? '' : 'none';
+        });
+    });
+</script>
 
   <footer>
       &copy; 2026 CardzInc. All rights reserved. Created by Atticus Orsagh and Francesco Galante.
